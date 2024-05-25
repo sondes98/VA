@@ -7,7 +7,7 @@ from confluent_kafka import Producer
 app = Flask(__name__)
 CORS(app, resources={r"/assistant": {"origins": "http://localhost:3000"}})
 
-# Kafka Producer configuration
+ # Kafka Producer configuration
 conf = {'bootstrap.servers': "localhost:9092"}
 producer = Producer(**conf)
 

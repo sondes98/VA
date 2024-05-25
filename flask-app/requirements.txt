@@ -1,2 +1,4 @@
-flask
-confluent_kafka
+Flask
+flask-cors
+pandas
+confluent-kafka

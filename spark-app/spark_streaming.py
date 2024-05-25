@@ -30,3 +30,21 @@ df = spark \
 df = df.selectExpr("CAST(value AS STRING)")
 
 # Parse the JSON string
+parsed_df = df.select(from_json(col("value"), schema).alias("data"))
+
+# Select the individual fields from the parsed data
+parsed_df = parsed_df.select("data.*")
+
+# Print the schema of the parsed DataFrame
+parsed_df.printSchema()
+
+# Write the parsed DataFrame to Elasticsearch
+query = parsed_df \
+    .writeStream \
+    .outputMode("append") \
+    .format("org.elasticsearch.spark.sql") \
+    .option("checkpointLocation", "/tmp/checkpoints") \
+    .start("laptops_index/laptops")
+
+# Wait for the stream to finish
+query.awaitTermination()
