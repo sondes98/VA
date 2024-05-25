@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import "./App.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+
 
 function App() {
   const [conversation, setConversation] = useState([]);
@@ -192,12 +191,16 @@ function App() {
         ))}
       </div>
       <div>
-        <FontAwesomeIcon icon={faShoppingBag} />
+      <div>
+        <h1>bag</h1>
         <ul>
           {bagItems.map((item, index) => (
             <li key={index}>{item.Product}</li>
           ))}
         </ul>
+      </div>
+        
+        
       </div>
       
     </div>
